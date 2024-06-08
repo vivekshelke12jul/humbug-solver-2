@@ -1,16 +1,18 @@
-from Node.State import State
-
+from Node.State.state import State
 
 class Node:
+    def __init__(self, state=None, parent=None, action=None, depth=0):
+        """
+        Initialize a Node.
 
-    def __init__(self, *args):
-        # state, parent, action in order
+        :param state: The state associated with this node.
+        :param parent: The parent node.
+        :param action: The action taken to reach this node from the parent.
+        """
+        self.state = state if state is not None else State()
+        self.parent = parent
+        self.action = action
+        self.depth = depth
 
-        if len(args) == 3:
-            self.state = args[0]
-            self.parent = args[1]
-            self.action = args[2]
-        elif len(args) == 0:
-            self.state = State
-            self.parent = None
-            self.action = None
+    def __repr__(self):
+        return f"Node(state={self.state}, action={self.action}, parent={self.parent}, depth={self.depth})"
